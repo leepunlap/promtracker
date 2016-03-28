@@ -1,0 +1,11 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | New Organization
+      .panel-body
+        = simple_form_for(@organization, html: { class: 'form-vertical' }, wrapper: :vertical_form) do |o|
+          = o.input :name
+          = o.input :desc
+          = o.button :submit, "Submit"
+          = link_to "Cancel", organizations_path, {:class=>"btn btn-default"}

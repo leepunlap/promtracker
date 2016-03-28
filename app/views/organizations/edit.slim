@@ -1,0 +1,17 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Edit Organization
+      .panel-body
+        = simple_form_for(@organization, html: { class: 'form-vertical' }, wrapper: :vertical_form) do |o|
+          = o.input :name
+          = o.input :desc
+          = o.button :submit, "Submit"
+          = link_to "Cancel", organization_path, {:class=>"btn btn-default"}
+    .panel.panel-default
+      .panel-heading
+        | Danger Zone
+      .panel-body
+        = simple_form_for(@organization, :method => :delete) do |o|
+          = o.button :submit, "Destroy", :class => 'btn-danger', :onclick => "return confirm('Are you sure?')"

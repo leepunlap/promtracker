@@ -1,0 +1,30 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = "Organization"
+      .panel-body
+        dl.dl-horizontal
+          dt Organization Name
+          dd = @organization.name
+          dt Tracking Code
+          dd = @organization.code
+          dt Description
+          dd = @organization.desc
+        = link_to "Edit", edit_organization_path, class: "btn btn-default" 
+        = link_to "Home", organizations_path, class: "btn btn-default" 
+
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = "Web Applications"
+      .panel-body
+        = link_to "New Web Application" , new_webapp_path(:orgid => @organization.id), class: "btn btn-default"
+      == grid(@webapps_grid) do |g|
+        - g.column name: 'ID', attribute: 'id', filter: false
+        - g.column name: 'Name', attribute: 'name'
+        - g.column name: 'AppID', attribute: 'appid'
+        - g.column name: 'Actions' do |o| render('webapp_actions', webapp: o) end
+
+            

@@ -1,0 +1,41 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Post Log (Last 10)
+      .panel-body
+        = link_to "Back" , webapp_path, class: "btn btn-default" 
+      table.table
+        tr
+          th Time
+          th Scheme
+          th Site
+          th Path
+          th Title
+          th Lang
+          th Charset
+          th Depth
+          th Resolution
+          th Window
+        - @ptobj['history'].each do |h|
+          tr
+            td
+              = DateTime.parse(h['time']).strftime "%Y-%m-%d %H:%M:%S" 
+            td
+              = h['us']
+            td
+              = h['uh']
+            td
+              = h['up']
+            td
+              = h['dt']
+            td
+              = h['ul']
+            td
+              = h['de']
+            td
+              = h['sd']
+            td
+              = h['sr']
+            td
+              = h['vp']

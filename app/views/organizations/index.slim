@@ -1,0 +1,14 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Organizations 
+      .panel-body
+        = link_to "New Organization" , new_organization_path, class: "btn btn-default"
+      == grid(@organizations_grid) do |g|
+        - g.column name: 'ID', attribute: 'id', filter: false
+        - g.column name: 'Organization', attribute: 'name'
+        - g.column name: 'Organization ID', attribute: 'code'
+        - g.column name: 'Actions' do |o| link_to "View" , organization_path(:id => o.id), class: "btn btn-default" end
+
+            

@@ -1,0 +1,59 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Web Application
+      .panel-body
+        dl.dl-horizontal
+          dt Organization Name
+          dd = @webapp.organization.name
+          dt Application Name
+          dd = @webapp.name
+          dt Application Description
+          dd = @webapp.desc
+        = link_to "Edit", edit_webapp_path, class: "btn btn-default" 
+        = link_to "Back", organization_path(:id=>@webapp.organization_id), class: "btn btn-default" 
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Application ID and Secret
+      .panel-body
+        dl.dl-horizontal
+          dt Application ID
+          dd = @webapp.appid
+          dt Application Secret
+          dd.wrapword = @webapp.appsecret
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Tracking Code
+      .panel-body
+        p 
+          | This is the Universal Analytics tracking code for this property.
+        p
+          | To get all the benefits of Universal Analytics for this property, click below to select the entire script text, then copy and paste this code into every webpage you want to track.
+        p
+          = link_to "Test" , test_path, class: "btn btn-default"
+        pre#scriptlet onclick="selectText('scriptlet')"
+          | &lt;script&gt;&#13;&#10;
+          |   (function(i,s,o,g,r,a,m){i['PromTrackerObject']=r;i[r]=i[r]||function(){&#13;&#10;
+          |   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),&#13;&#10;
+          |   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)&#13;&#10;
+          |   })(window,document,'script','//promtracker-roadlogica.c9users.io/analytics.js','ga');&#13;&#10;
+          | &#13;&#10;
+          |   ga('create', '#{@webapp.appid}', 'auto');&#13;&#10;
+          |   ga('send', 'pageview');&#13;&#10;
+          |&#13;&#10;
+          | &lt;/script&gt;&#13;&#10;
+javascript:
+    function selectText(containerid) {
+        if (document.selection) {
+            var range = document.body.createTextRange();
+            range.moveToElementText(document.getElementById(containerid));
+            range.select();
+        } else if (window.getSelection) {
+            var range = document.createRange();
+            range.selectNode(document.getElementById(containerid));
+            window.getSelection().addRange(range);
+        }
+    }

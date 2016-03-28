@@ -1,0 +1,19 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Post Log
+      .panel-body
+        pre
+          - @logs.each do |l|
+            = l
+            | &#13;&#10;
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Parameters
+      .panel-body
+        dl.dl-horizontal
+          - params.each do |p|
+            dt = p[0]
+            dd = p[1]

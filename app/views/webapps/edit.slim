@@ -1,0 +1,11 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | Edit Web Application
+      .panel-body
+        = simple_form_for(@webapp, html: { class: 'form-vertical' }, wrapper: :vertical_form) do |o|
+          = o.input :name
+          = o.input :desc
+          = o.button :submit, "Submit"
+          = link_to "Cancel", webapp_path, {:class=>"btn btn-default"}

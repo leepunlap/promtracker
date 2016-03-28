@@ -1,0 +1,12 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        | New Web Application for #{@organization.name}
+      .panel-body
+        = simple_form_for(@webapp, html: { class: 'form-vertical' }, wrapper: :vertical_form) do |o|
+          = o.input :name
+          = o.input :desc
+          = o.input :organization_id, :as => :hidden, :input_html => { :value => @organization.id }
+          = o.button :submit, "Submit"
+          = link_to "Cancel", organization_path(:id=>params[:orgid]), {:class=>"btn btn-default"}
